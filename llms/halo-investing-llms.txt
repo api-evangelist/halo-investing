@@ -1,0 +1,73 @@
+# Halo Investing
+
+> Halo Investing is a Chicago-based financial technology company that operates a marketplace for "protective investments" — structured notes, multi-manager structured note SMAs, buffered ETFs, annuities and insurance — connecting financial advisors, RIAs and financial institutions with more than 40 global banking and insurance issuers.
+
+Founded in 2015 by Biju Kulathakal and Jason Barsema, Halo lets advisors analyze, customize, price, execute and then monitor outcome-based investment products from a single dashboard, including tracking observation and maturity dates on issued notes. The company reports more than $45.5B in transactions since 2015 and employs 100+ people. Its affiliate Halo Securities LLC is an SEC-registered broker-dealer and a member of FINRA/SIPC, acting as distributor and selling agent for structured note products.
+
+## API surface
+
+Halo Investing publishes **no public API, developer portal, API documentation, SDK, CLI, MCP server, or machine-readable contract** as of 2026-08-04.
+
+Contract discovery probed both real hosts — `haloinvesting.com` and `notes.haloinvesting.com` — for `/openapi.json`, `/openapi.yaml`, `/swagger.json`, `/v2/api-docs`, `/v3/api-docs`, `/api-docs`, `/swagger-ui.html`, `/graphql`, `/api`, `/rest`, `/llms.txt` and the full `/.well-known/` discovery surface including `agent-card.json` and `agent.json`. Every probe missed. Package registries (npm, PyPI, RubyGems, crates.io, NuGet) carry no first-party client library, and no GitHub organization exists.
+
+Two catch-all traps on this domain produce false positives and are documented in the well-known probe record: the WordPress marketing site returns HTTP 200 with an HTML article for **every** unknown path (so `/llms.txt` and `/openapi.json` "200s" are soft-404s), and `*.haloinvesting.com` is a wildcard DNS record, so `api.haloinvesting.com` resolves and answers 502 despite not being an API host.
+
+The advisor platform at `notes.haloinvesting.com` is entirely authenticated — every path 301-redirects to `/react/app/onboarding/login`. Advisor-side API integration is offered through the third-party **Schwab OpenView Gateway**, operated by Performance Technologies, Inc. (PTI), rather than through a Halo-published API.
+
+## Solutions
+
+- [Structured Notes](https://haloinvesting.com/our-solution/structured-notes/): Custom and pre-built structured notes from 40+ global issuers
+- [Structured Note SMA](https://haloinvesting.com/our-solution/structured-note-sma/): The industry's first multi-manager structured note SMA marketplace
+- [Annuities and Insurance](https://haloinvesting.com/our-solution/annuities-and-insurance/): Protective insurance and annuity products
+- [Advanced Wealth Solutions](https://haloinvesting.com/our-solution/advanced-wealth-solutions/): Tailored wealth management strategies
+- [Buffered ETFs](https://haloinvesting.com/our-solution/buffered-etfs/): Defined-outcome exchange-traded funds
+
+## Who it serves
+
+- [Financial Advisors](https://haloinvesting.com/who-we-help/financial-advisors/)
+- [Financial Institutions](https://haloinvesting.com/who-we-help/financial-institutions/)
+- [Problems We Solve](https://haloinvesting.com/protective-investing/)
+
+## Resources
+
+- [Aura](https://haloinvesting.com/resources/aura/): Portfolio simulation tool for structured notes
+- [Structured Notes 101](https://haloinvesting.com/resources/structured-notes-101/): Educational primer
+- [Asset Allocation Framework](https://haloinvesting.com/resources/asset-allocation-framework/): Allocation framework for structured notes
+- [Hedged Equity](https://haloinvesting.com/resources/hedged-equity/): Hedged equity strategy resources
+- [The Halo Journal](https://haloinvesting.com/journal/): Company blog and market commentary ([RSS](https://haloinvesting.com/feed/))
+
+## Platform access
+
+- [Request Access](https://haloinvesting.com/request-access/): Advisor onboarding request
+- [Log in](https://notes.haloinvesting.com/logon): Authenticated Halo Notes platform
+
+## Company and legal
+
+- [About](https://haloinvesting.com/about/)
+- [Contact Us](https://haloinvesting.com/contact-us/)
+- [Careers](https://haloinvesting.com/careers/)
+- [Important Disclosures](https://haloinvesting.com/important-disclosures/): Legal terms, Reg BI form, Form CRS, FINRA/SIPC membership
+- [Privacy Policy](https://haloinvesting.com/privacy-policy/)
+- [Business Continuity Plan](https://haloinvesting.com/bcp/)
+- [FINRA BrokerCheck](https://brokercheck.finra.org/)
+
+## Elsewhere
+
+- [LinkedIn](https://www.linkedin.com/company/halo-investing-inc)
+- [X / Twitter](https://twitter.com/HaloInvesting)
+- [YouTube](https://www.youtube.com/@haloinvesting)
+- [Schwab Advisor Services provider listing](https://advisorservices.schwab.com/provider-solutions/Halo-Investing-Protective-Investments-Marketplace)
+- [Forge Global secondary-market listing](https://forgeglobal.com/halo-investing_stock/)
+- [Nasdaq Private Market listing](https://www.nasdaqprivatemarket.com/company/halo-investing/)
+
+## API Evangelist artifacts
+
+- [apis.yml](https://raw.githubusercontent.com/api-evangelist/halo-investing/refs/heads/main/apis.yml): APIs.json 0.20 provider profile
+- [Conformance](https://raw.githubusercontent.com/api-evangelist/halo-investing/refs/heads/main/conformance/halo-investing-conformance.yml): API-standard and securities-regulatory conformance
+- [Domain security](https://raw.githubusercontent.com/api-evangelist/halo-investing/refs/heads/main/security/halo-investing-domain-security.yml): probed TLS/HSTS/DNSSEC/CAA/SPF/DMARC posture
+- [Well-known probe record](https://raw.githubusercontent.com/api-evangelist/halo-investing/refs/heads/main/well-known/halo-investing-well-known.yml): full contract-discovery evidence
+
+---
+generated: 2026-08-04
+method: generated
+source: apis.yml + probed https://haloinvesting.com/ and https://notes.haloinvesting.com/ (no provider-published /llms.txt; the apex returns a soft-404 HTML article for that path)

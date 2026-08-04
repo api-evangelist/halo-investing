@@ -1,0 +1,92 @@
+generated: '2026-08-04'
+method: searched
+source: https://haloinvesting.com/important-disclosures/ + https://haloinvesting.com/bcp/
+  + live probes recorded in well-known/halo-investing-well-known.yml
+scope: >-
+  Halo Investing publishes no public API, so there is no OpenAPI, securityScheme,
+  error format or pagination convention to assert API-standard conformance against.
+  Every API/technical standard below is therefore recorded as not-conforming on the
+  basis of an observed absence, not a failed implementation. What Halo does publish is
+  a securities-regulatory compliance surface, captured under `regulatory` — that is the
+  real compliance posture of a broker-dealer, and it is what the `Compliance` pointer
+  in apis.yml refers to. Note that Halo publishes NO security certification
+  (no SOC 2, ISO 27001, PCI DSS or HIPAA attestation is public), and no trust center.
+standards:
+- id: openapi
+  conforms: false
+  evidence: No OpenAPI/Swagger document found on any host; see contract_discovery in
+    well-known/halo-investing-well-known.yml.
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming or webhook surface is publicly documented.
+- id: graphql
+  conforms: false
+  evidence: https://notes.haloinvesting.com/graphql redirects to the login page; no
+    anonymous GraphQL surface.
+- id: mcp
+  conforms: false
+  evidence: No Model Context Protocol server published.
+- id: a2a
+  conforms: false
+  evidence: No agent card at /.well-known/agent-card.json or /.well-known/agent.json on
+    haloinvesting.com or notes.haloinvesting.com.
+- id: oauth2
+  conforms: false
+  evidence: No public OAuth authorization server; no RFC 8414 or RFC 9728 metadata.
+- id: oidc-discovery
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 403 (apex) / 301 to login (platform).
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: No /.well-known/security.txt; the apex returns 403 for the whole
+    /.well-known/ prefix.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No public API surface to evaluate.
+- id: llms-txt
+  conforms: false
+  evidence: https://haloinvesting.com/llms.txt returns 200 but serves a soft-404 HTML
+    article, not an llms.txt document.
+regulatory:
+- id: sec-registered-broker-dealer
+  conforms: true
+  entity: Halo Securities LLC
+  evidence: 'Stated on https://haloinvesting.com/important-disclosures/: "SEC-registered
+    broker/dealer and member of FINRA/SIPC", acting as distributor/selling agent for
+    structured note products.'
+- id: finra-membership
+  conforms: true
+  entity: Halo Securities LLC
+  evidence: FINRA/SIPC membership asserted on the disclosures page; the site links to
+    FINRA BrokerCheck at https://brokercheck.finra.org/.
+- id: sipc-membership
+  conforms: true
+  entity: Halo Securities LLC
+  evidence: Asserted on https://haloinvesting.com/important-disclosures/.
+- id: sec-regulation-best-interest
+  conforms: true
+  evidence: A Reg BI disclosure form is published and linked from the disclosures page
+    (hosted on Google Drive).
+  document: https://drive.google.com/file/d/17CHvo18luzMxMFAUqgpD1Cw_hrW9xgLw/view
+- id: sec-form-crs
+  conforms: true
+  evidence: A Form CRS customer relationship summary is published and linked from the
+    disclosures page (hosted on Google Drive).
+  document: https://drive.google.com/file/d/1iMSwasAcjfd0dhbg-8sgIwOgmKSak6wN/view
+- id: finra-business-continuity-disclosure
+  conforms: true
+  evidence: A business continuity plan summary is published at
+    https://haloinvesting.com/bcp/ (FINRA Rule 4370 disclosure).
+- id: soc2
+  conforms: false
+  evidence: No SOC 2 report, trust center or security-compliance page found; the
+    /security/, /trust/ and /compliance/ paths return soft-404 marketing HTML.
+- id: iso-27001
+  conforms: false
+  evidence: No ISO 27001 certification published.
+entities:
+- name: Halo Investing, Inc.
+  role: parent company / platform operator
+  address: 200 W Jackson Blvd, 18th Floor, Chicago, IL 60606
+- name: Halo Securities LLC
+  role: SEC-registered broker-dealer, member FINRA/SIPC; distributor and selling agent

@@ -1,0 +1,42 @@
+generated: '2026-08-04'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml hosts (probe-domain-security.py, plus a
+  manual curl pass that recovered the HSTS headers the scripted HEAD request missed)
+hosts:
+- host: haloinvesting.com
+  role: marketing site (WordPress)
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 25 05:16:55 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: false
+  hsts_preload: false
+- host: notes.haloinvesting.com
+  role: authenticated advisor platform (Halo Notes) — AWS ALB, Next.js
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 27 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+  hsts_preload: true
+domains:
+- domain: haloinvesting.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+  dmarc_record: 'v=DMARC1; p=none; rua=mailto:ndmdixvq@rua.eu.dmarcmanager.app,mailto:dmarc@haloinvesting.com;
+    adkim=r; aspf=r; pct=100'
+notes:
+- The apex domain publishes SPF and DMARC, but the DMARC policy is p=none (monitor
+  only, no enforcement), and there is no CAA record and no DNSSEC.
+- The authenticated platform host notes.haloinvesting.com carries the stronger posture
+  — HSTS with includeSubDomains and preload — while the marketing apex sets a bare
+  max-age with neither.
+- 'DNS caution for future rounds: *.haloinvesting.com is a wildcard A record pointing
+  at 52.73.145.146. Every unregistered subdomain (api., developer., apis., gateway.,
+  status., trust., security., mcp.) resolves and answers HTTP 502 with an HTML body.
+  Treat any such subdomain as a wildcard artifact, not a real host.'

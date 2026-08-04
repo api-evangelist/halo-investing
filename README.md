@@ -42,5 +42,37 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Halo Investing is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/halo-investing_stock/
+Halo Investing is a Chicago-based financial technology company that operates a marketplace for
+"protective investments" — structured notes, multi-manager structured note SMAs, buffered ETFs,
+annuities and insurance — connecting financial advisors, RIAs and financial institutions with more
+than 40 global banking and insurance issuers. Founded in 2015 by Biju Kulathakal and Jason Barsema,
+the platform lets advisors analyze, customize, price, execute and monitor outcome-based products
+from a single dashboard. Its affiliate Halo Securities LLC is an SEC-registered broker-dealer and a
+member of FINRA/SIPC.
+
+## API surface
+
+**Halo Investing publishes no public API, developer portal, API documentation, SDK, CLI, MCP server,
+or machine-readable contract** as of 2026-08-04. Contract discovery probed both real hosts —
+`haloinvesting.com` and the authenticated advisor platform `notes.haloinvesting.com` — across the
+OpenAPI/Swagger, GraphQL, MCP and `/.well-known/` (including A2A agent card) surfaces. Every probe
+missed. No GitHub organization exists and no first-party client library is published to npm, PyPI,
+RubyGems, crates.io or NuGet. Advisor-side API integration is offered through the third-party
+**Schwab OpenView Gateway** (operated by Performance Technologies, Inc.), not a Halo-published API.
+
+Two catch-all traps on this domain produce false positives, and are recorded in
+`well-known/halo-investing-well-known.yml` so future rounds do not mistake them for artifacts:
+
+- The WordPress marketing site returns **HTTP 200 with an HTML article for every unknown path**, so
+  `/llms.txt`, `/openapi.json`, `/security/` and `/trust/` all "succeed" as soft-404s.
+- `*.haloinvesting.com` is a **wildcard DNS record**, so `api.`, `developer.`, `status.`, `trust.`
+  and `mcp.` all resolve and answer 502 without being real hosts.
+
+## Links
+
+- Website — https://haloinvesting.com/
+- Platform login — https://notes.haloinvesting.com/logon
+- Request access — https://haloinvesting.com/request-access/
+- Important disclosures (Reg BI, Form CRS, FINRA/SIPC) — https://haloinvesting.com/important-disclosures/
+- Schwab Advisor Services listing — https://advisorservices.schwab.com/provider-solutions/Halo-Investing-Protective-Investments-Marketplace
+- Forge Global secondary-market listing — https://forgeglobal.com/halo-investing_stock/

@@ -1,0 +1,149 @@
+generated: '2026-08-04'
+method: probed
+source: https://haloinvesting.com/ + https://notes.haloinvesting.com/
+summary: >-
+  No /.well-known/ discovery document is published on any Halo Investing host. No raw
+  files were saved because no probe returned a real document, and no `WellKnown`,
+  `SecurityTxt`, `APICatalog` or `AgentCard` pointer is wired in apis.yml.
+  Two independent catch-all traps make this host family a false-positive minefield —
+  both are recorded below so a future round does not mistake them for artifacts.
+catch_all:
+- host: haloinvesting.com
+  behavior: HTTP 200 with an HTML body for EVERY unknown path
+  content_type: text/html
+  evidence: >-
+    /llms.txt, /openapi.json, /security.txt, /security/, /trust/, /compliance/ and the
+    control path /zzzz-total-nonsense-path all return 200 serving the identical
+    WordPress article "Two Ways Advisors Can Use Structured Notes: Layered Vs.
+    Replacement Allocations". These are soft-404s, not documents.
+  note: >-
+    Reject any 200 HTML body on this host as evidence. Only /.well-known/* is honest
+    here — the webserver returns a true 403 for that prefix.
+- host: '*.haloinvesting.com'
+  behavior: wildcard DNS A record to 52.73.145.146, HTTP 502 with an HTML body
+  evidence: >-
+    api., developer., developers., apis., gateway., portal., platform., status.,
+    trust., security. and mcp. all resolve to the same address, as does the control
+    name zzz-nonexistent-test.haloinvesting.com. Every one answers 502.
+  note: >-
+    api.haloinvesting.com is NOT an API host. It is a wildcard artifact. Do not record
+    it as a baseURL or probe target on future rounds.
+documents:
+- host: https://haloinvesting.com
+  probes:
+  - {path: /.well-known/security.txt, status: 403, found: false}
+  - {path: /.well-known/openid-configuration, status: 403, found: false}
+  - {path: /.well-known/oauth-authorization-server, status: 403, found: false}
+  - {path: /.well-known/api-catalog, status: 403, found: false}
+  - {path: /.well-known/ai-plugin.json, status: 403, found: false}
+  - {path: /.well-known/agent-card.json, status: 403, found: false}
+  - {path: /.well-known/agent.json, status: 403, found: false}
+  - {path: /security.txt, status: 200, found: false, reason: soft-404 HTML article}
+- host: https://notes.haloinvesting.com
+  probes:
+  - {path: /.well-known/security.txt, status: 301, found: false, reason: redirect to login}
+  - {path: /.well-known/openid-configuration, status: 301, found: false, reason: redirect to login}
+  - {path: /.well-known/oauth-authorization-server, status: 301, found: false, reason: redirect to login}
+  - {path: /.well-known/oauth-protected-resource, status: 301, found: false, reason: redirect to login}
+  - {path: /.well-known/agent-card.json, status: 301, found: false, reason: redirect to login}
+  - {path: /.well-known/agent.json, status: 301, found: false, reason: redirect to login}
+contract_discovery:
+  performed: '2026-08-04'
+  result: no machine-readable contract published
+  hosts_probed:
+  - haloinvesting.com
+  - notes.haloinvesting.com
+  subdomains_resolved:
+  - name: notes.haloinvesting.com
+    real: true
+    role: authenticated advisor platform (Next.js on an AWS ALB); every path 301s to
+      /react/app/onboarding/login?next=<path>
+  - name: app.haloinvesting.com
+    real: false
+    reason: parked GoDaddy address (184.168.221.45), not a Halo service
+  subdomains_wildcard:
+  - api.haloinvesting.com
+  - developer.haloinvesting.com
+  - developers.haloinvesting.com
+  - apis.haloinvesting.com
+  - gateway.haloinvesting.com
+  - portal.haloinvesting.com
+  - platform.haloinvesting.com
+  - status.haloinvesting.com
+  - trust.haloinvesting.com
+  - security.haloinvesting.com
+  - mcp.haloinvesting.com
+  paths:
+  - {host: notes.haloinvesting.com, path: /openapi.json, status: 301, found: false}
+  - {host: notes.haloinvesting.com, path: /openapi.yaml, status: 301, found: false}
+  - {host: notes.haloinvesting.com, path: /swagger.json, status: 301, found: false}
+  - {host: notes.haloinvesting.com, path: /v2/api-docs, status: 301, found: false}
+  - {host: notes.haloinvesting.com, path: /v3/api-docs, status: 301, found: false}
+  - {host: notes.haloinvesting.com, path: /api-docs, status: 301, found: false}
+  - {host: notes.haloinvesting.com, path: /swagger-ui.html, status: 301, found: false}
+  - {host: notes.haloinvesting.com, path: /swagger-ui/index.html, status: 301, found: false}
+  - {host: notes.haloinvesting.com, path: /graphql, status: 301, found: false}
+  - {host: notes.haloinvesting.com, path: /api, status: 301, found: false}
+  - {host: notes.haloinvesting.com, path: /rest, status: 301, found: false}
+  - {host: notes.haloinvesting.com, path: /llms.txt, status: 301, found: false}
+  - {host: haloinvesting.com, path: /llms.txt, status: 200, found: false, reason: soft-404 HTML}
+  - {host: haloinvesting.com, path: /openapi.json, status: 200, found: false, reason: soft-404 HTML}
+  graphql:
+    endpoint: https://notes.haloinvesting.com/graphql
+    introspection: false
+    reason: redirects to the login page; no GraphQL surface is exposed anonymously
+  mcp:
+    result: none
+    reason: no MCP endpoint found; mcp.haloinvesting.com is a wildcard artifact
+  a2a:
+    result: none
+    reason: no agent card at /.well-known/agent-card.json or /.well-known/agent.json
+      on either real host
+  sitemap:
+    url: https://haloinvesting.com/sitemap.xml
+    status: 200
+    page_sitemap: https://haloinvesting.com/page-sitemap.xml
+    developer_pages: 0
+    note: 31 pages, all marketing/legal/resource pages; no developer, API or documentation
+      page exists
+  github_org:
+    result: none
+    evidence: 'GitHub API: orgs/haloinvesting 404, orgs/halo-investing 404,
+      orgs/HaloInvesting 404; repository search for "haloinvesting" returns 0 results'
+  registries:
+    npm: no first-party package found (all "halo" hits belong to the unrelated Halo CMS
+      / halo-dev project)
+    pypi: no first-party package found (haloinvesting 404, halo-investing 404)
+    rubygems: 404
+    crates: none
+    nuget: 0 results
+  postman:
+    result: profile-only
+    team: Halo Domination
+    handle: halodomination
+    url: https://www.postman.com/halodomination
+    description: 'Halo Investing Development Team'
+    public_collections: 0
+    public_workspaces: 0
+    public_apis: 0
+    note: A public Postman team profile exists but publishes zero collections,
+      workspaces or APIs, so no `Postman` pointer is wired — there is nothing to fork.
+  wordpress_rest_api:
+    url: https://haloinvesting.com/wp-json/
+    status: 200
+    namespaces: 21
+    routes: 398
+    note: >-
+      The marketing site exposes the stock WordPress REST API. This is CMS
+      infrastructure present on millions of WordPress sites, not a Halo Investing
+      product API, so it is deliberately NOT registered as an API in apis.yml.
+      Recorded here only as observed evidence.
+  third_party_integration:
+    name: Schwab OpenView Gateway
+    url: https://advisorservices.schwab.com/provider-solutions/Halo-Investing-Protective-Investments-Marketplace
+    note: >-
+      Schwab lists Halo Investing as a provider solution and states that API
+      integration and single sign-on are provided through the Schwab OpenView
+      Gateway, operated by Performance Technologies, Inc. (PTI). This is a
+      Schwab-operated gateway, not a Halo-published API, and confers no
+      Halo-published machine-readable contract.
