@@ -1,0 +1,21 @@
+{
+  "repo": "halo-investing",
+  "feeds": [
+    {
+      "source": "https://haloinvesting.com/about/",
+      "feed_url": "https://haloinvesting.com/feed/",
+      "title": "",
+      "saved": 1,
+      "method": "discovered"
+    },
+    {
+      "source": "https://haloinvesting.com/journal/",
+      "feed_url": "https://haloinvesting.com/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 1,
+  "fetched": "2026-08-06T14:08:46Z"
+}
