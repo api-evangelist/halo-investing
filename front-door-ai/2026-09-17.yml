@@ -1,0 +1,26 @@
+# Front Door AI Index — halo-investing — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: halo-investing
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: haloinvesting.com
+  final_host: haloinvesting.com
+  ownership: own
+  owner: halo-investing
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 2
+  host_score: 2
+  density: 0.94
+  words: 2132
+  tiers:
+    agentic: 0
+    core: 2
+    model: 0
+  ambiguous: 8
+  top_terms:
+    agent: 8
+    AI: 2
