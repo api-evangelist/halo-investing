@@ -64,37 +64,84 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Halo Investing is a Chicago-based financial technology company that operates a marketplace for
-"protective investments" — structured notes, multi-manager structured note SMAs, buffered ETFs,
-annuities and insurance — connecting financial advisors, RIAs and financial institutions with more
-than 40 global banking and insurance issuers. Founded in 2015 by Biju Kulathakal and Jason Barsema,
-the platform lets advisors analyze, customize, price, execute and monitor outcome-based products
-from a single dashboard. Its affiliate Halo Securities LLC is an SEC-registered broker-dealer and a
-member of FINRA/SIPC.
+Halo Investing is a Chicago-based financial technology company that operates a marketplace for "protective investments" — structured notes, multi-manager structured note SMAs, buffered ETFs, annuities and insurance — connecting financial advisors, RIAs and financial institutions with more than 40 global banking and insurance issuers. Founded in 2015 by Biju Kulathakal and Jason Barsema, the platform lets advisors analyze, customize, price, execute and then monitor outcome-based products from a single dashboard, with tools such as the Aura portfolio simulator and an asset allocation framework for structured notes. Halo reports more than $45.5B in transactions since 2015 and employs 100+ people. Its affiliate Halo Securities LLC is an SEC-registered broker-dealer and a member of FINRA/SIPC, acting as distributor and selling agent for structured note products. The advisor platform at notes.haloinvesting.com is entirely authenticated behind a login. As of this profiling pass Halo Investing publishes no public developer portal, API documentation, OpenAPI/AsyncAPI/GraphQL contract, SDK, CLI, MCP server or A2A agent card; advisor-side API integration is offered through the third-party Schwab OpenView Gateway rather than a Halo-published API.
 
-## API surface
+**Areas:** Company · Financial Services · Fintech · WealthTech · Investing · Structured Notes · Annuities · Insurance · Broker-Dealer · Capital Markets · Wealth Management
 
-**Halo Investing publishes no public API, developer portal, API documentation, SDK, CLI, MCP server,
-or machine-readable contract** as of 2026-08-04. Contract discovery probed both real hosts —
-`haloinvesting.com` and the authenticated advisor platform `notes.haloinvesting.com` — across the
-OpenAPI/Swagger, GraphQL, MCP and `/.well-known/` (including A2A agent card) surfaces. Every probe
-missed. No GitHub organization exists and no first-party client library is published to npm, PyPI,
-RubyGems, crates.io or NuGet. Advisor-side API integration is offered through the third-party
-**Schwab OpenView Gateway** (operated by Performance Technologies, Inc.), not a Halo-published API.
+## Halo Investing on APIs.io
 
-Two catch-all traps on this domain produce false positives, and are recorded in
-`well-known/halo-investing-well-known.yml` so future rounds do not mistake them for artifacts:
+Everything profiled for Halo Investing is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/halo-investing/](https://apis.io/providers/halo-investing/)** — or go straight to one of the APIs or properties below.
 
-- The WordPress marketing site returns **HTTP 200 with an HTML article for every unknown path**, so
-  `/llms.txt`, `/openapi.json`, `/security/` and `/trust/` all "succeed" as soft-404s.
-- `*.haloinvesting.com` is a **wildcard DNS record**, so `api.`, `developer.`, `status.`, `trust.`
-  and `mcp.` all resolve and answer 502 without being real hosts.
+### Published properties
 
-## Links
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- Website — https://haloinvesting.com/
-- Platform login — https://notes.haloinvesting.com/logon
-- Request access — https://haloinvesting.com/request-access/
-- Important disclosures (Reg BI, Form CRS, FINRA/SIPC) — https://haloinvesting.com/important-disclosures/
-- Schwab Advisor Services listing — https://advisorservices.schwab.com/provider-solutions/Halo-Investing-Protective-Investments-Marketplace
-- Forge Global secondary-market listing — https://forgeglobal.com/halo-investing_stock/
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Halo Investing Domain Security](https://apis.io/security/halo-investing/halo-investing-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://haloinvesting.com/)
+- [Sign up](https://haloinvesting.com/request-access/)
+- [Blog](https://haloinvesting.com/journal/)
+- [Compliance](https://haloinvesting.com/important-disclosures/)
+- [Terms of service](https://haloinvesting.com/important-disclosures/)
+- [Privacy policy](https://haloinvesting.com/privacy-policy/)
+
+## API Evangelist rating
+
+**Kin Score 10.7** — minimal · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 55.4 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 0.0 |
+| Access clarity | 25.0 |
+
+**Agent readiness 0.0** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 17.5** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/halo-investing/](https://apis.io/providers/halo-investing/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Halo Investing: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/halo-investing/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
